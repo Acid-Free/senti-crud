@@ -18,9 +18,9 @@ function sendSuccess(resultObject, response) {
 router.get("/", async (request, response) => {
   try {
     const jobPosting = await JobPosting.find({});
-    sendSuccess(jobPosting, response);
+    return sendSuccess(jobPosting, response);
   } catch (error) {
-    sendError(error, response);
+    return sendError(error, response);
   }
 });
 
@@ -34,9 +34,9 @@ router.get("/:id", async (request, response) => {
       return sendError(nonexistentError, response);
     }
 
-    sendSuccess(jobPosting, response);
+    return sendSuccess(jobPosting, response);
   } catch (error) {
-    sendError(error, response);
+    return sendError(error, response);
   }
 });
 
@@ -44,9 +44,9 @@ router.get("/:id", async (request, response) => {
 router.post("/", async (request, response) => {
   try {
     const jobPosting = await JobPosting.create(request.body);
-    response.status(200).json(jobPosting);
+    return sendSuccess(jobPosting, response);
   } catch (error) {
-    response.status(500).json({ message: error.message });
+    return sendError(error, response);
   }
 });
 
