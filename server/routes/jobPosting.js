@@ -4,10 +4,13 @@ import JobPosting from "../models/jobPosting.js";
 
 const router = express.Router();
 
-const nonexistentError = { message: "Object doesn't exist" };
+const nonexistentError = { status: 404, message: "Object doesn't exist" };
 
 function sendError(error, response) {
-  response.status(500).json({ message: error.message });
+  // checks if status key exists, 500 otherwise
+  const status = error?.status ?? 500;
+  console.log("status:", status);
+  response.status(status).json({ message: error.message });
 }
 
 function sendSuccess(resultObject, response) {
@@ -29,7 +32,7 @@ router.get("/:id", async (request, response) => {
   try {
     const jobPosting = await JobPosting.findById(request.params.id);
 
-    // send error if empty result
+    // Send error if empty result
     if (!jobPosting) {
       return sendError(nonexistentError, response);
     }
@@ -51,8 +54,24 @@ router.post("/", async (request, response) => {
 });
 
 // Update specific job posting by id
-router.put("/:id", (request, response) => {
-  // TODO:
+router.put("/:id", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.findByIdAndUpdate(
+      request.params.id,
+      request.body
+    );
+
+    // Send error if empty result
+    if (!jobPosting) {
+      return sendError(nonexistentError, response);
+    }
+
+    const updatedJobPosting = await JobPosting.findById(request.params.id);
+
+    return sendSuccess(updatedJobPosting, response);
+  } catch (error) {
+    return sendError(error, response);
+  }
 });
 
 // Delete specific job posting by id
