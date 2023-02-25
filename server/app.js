@@ -74,8 +74,16 @@ app.post("/edit-job-posting/:id", async (request, response) => {
 });
 
 // Called by forms when deleting a paricular job posting by id
-app.post("/delete-job-posting/:id", (request, response) => {
-  // TODO:
+app.post("/delete-job-posting/:id", async (request, response) => {
+  try {
+    await fetch(`${api}/api/job-postings/${request.params.id}`, {
+      method: "delete",
+    });
+  } catch (error) {
+    return response.status(500).send(error);
+  }
+
+  return response.redirect("/");
 });
 
 mongoose
