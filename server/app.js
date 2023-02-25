@@ -1,4 +1,4 @@
-import express from "express";
+import express, { query } from "express";
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import apiRouter from "./routes/api.js";
@@ -57,11 +57,20 @@ app.get("/edit-job-posting/:id", async (request, response) => {
   }
 });
 
+// Calls API to update specific job posting
 app.post("/edit-job-posting/:id", async (request, response) => {
-  // const queryResult = await fetch(`${api}/api/job-postings/${request.params.id}`, {
-  //   method:"put",
-  //   body: JSON.stringify({})
-  // })
+  try {
+    await fetch(`${api}/api/job-postings/${request.params.id}`, {
+      method: "put",
+      body: JSON.stringify({ ...request.body }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    return response.status(500).send("500: Internal server error");
+  }
+
+  // TODO: create flash message
+  return response.redirect("/");
 });
 
 // Called by forms when deleting a paricular job posting by id
