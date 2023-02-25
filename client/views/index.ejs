@@ -6,7 +6,21 @@
   <title>Job Postings</title>
 </head>
 <body>
-  <h1><%= message %></h1>
+  <ul>
+
+    <%jobPostings.forEach(jobPosting => { %>
+      <h2><%= jobPosting.title %></h2>
+      <p><%= jobPosting.description %></p>
+      <p><%= jobPosting.location %></p>
+      <p><%= jobPosting.salary %></p>
+      <p>Company: <%= jobPosting.company.name %></p>
+      <p>Website: <%= jobPosting.company.website %></p>
+      <form action="/edit-job-postings/<%= jobPosting._id %>" method="get">
+        <button>Edit</button>
+      </form>
+    <% }); %>
+  </ul>
+      
   <script src="/scripts/main.js"></script>
 </body>
 </html>
