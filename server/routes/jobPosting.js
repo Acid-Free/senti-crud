@@ -4,23 +4,40 @@ import JobPosting from "../models/jobPosting.js";
 
 const router = express.Router();
 
+const nonexistentError = { message: "Object doesn't exist" };
+
 function sendError(error, response) {
-  return response.status(500).json({ message: error.message });
+  response.status(500).json({ message: error.message });
+}
+
+function sendSuccess(resultObject, response) {
+  response.status(200).json(resultObject);
 }
 
 // Get all job postings
 router.get("/", async (request, response) => {
   try {
     const jobPosting = await JobPosting.find({});
-    response.status(200).json(jobPosting);
+    sendSuccess(jobPosting, response);
   } catch (error) {
     sendError(error, response);
   }
 });
 
 // Get specific job posting by id
-router.get("/:id", (request, response) => {
-  // TODO:
+router.get("/:id", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.findById(request.params.id);
+
+    // send error if empty result
+    if (!jobPosting) {
+      sendError(nonexistentError, response);
+    }
+
+    sendSuccess(jobPosting, response);
+  } catch (error) {
+    sendError(error, response);
+  }
 });
 
 // Add new job posting
