@@ -1,4 +1,1 @@
-fetch("/api/hello")
-  .then((response) => response.json())
-  .then((data) => console.log(data.message))
-  .catch((error) => console.error(error));
+console.log("this is main");
