@@ -75,8 +75,18 @@ router.put("/:id", async (request, response) => {
 });
 
 // Delete specific job posting by id
-router.delete("/:id", (request, response) => {
-  // TODO:
+router.delete("/:id", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.findByIdAndDelete(request.params.id);
+
+    if (!jobPosting) {
+      return sendError(nonexistentError, response);
+    }
+
+    return sendSuccess({ message: "Object deleted" }, response);
+  } catch (error) {
+    return sendError(error, response);
+  }
 });
 
 // Get job posting count
