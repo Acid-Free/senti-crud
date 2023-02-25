@@ -30,11 +30,40 @@ app.use(express.urlencoded({ extended: false }));
 // API endpoints defined in apiRouter are prefixed with /api
 app.use("/api", apiRouter);
 
+// Default route
 app.get("/", async (request, response) => {
-  const query = await fetch(`${api}/api/hello`);
-  const message = await query.json();
+  try {
+    let jobPostings = await fetch(`${api}/api/job-postings`);
+    jobPostings = await jobPostings.json();
 
-  response.render("index", message);
+    return response.status(200).render("index", { jobPostings });
+  } catch (error) {
+    return response.status(500).send("500: Internal server error");
+  }
+});
+
+// Called by forms when editing a particular job posting by id
+// Render another page for editing job posting info
+app.get("/edit-job-postings/:id", async (request, response) => {
+  try {
+    let jobPostings = await fetch(
+      `${api}/api/job-postings/${request.params.id}`
+    );
+    jobPostings = await jobPostings.json();
+
+    return response.render("update-job-postings", { jobPostings });
+  } catch (error) {
+    return response.status(500).send("500: Internal server error");
+  }
+});
+
+app.post("/edit-job-postings/:id", async (request, response) => {
+  // TODO:
+});
+
+// Called by forms when deleting a paricular job posting by id
+app.post("/delete-job-postings/:id", (request, response) => {
+  // TODO:
 });
 
 mongoose
