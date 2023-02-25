@@ -17,8 +17,13 @@ router.get("/:id", (request, response) => {
 });
 
 // Add new job posting
-router.post("/", (request, response) => {
-  // TODO:
+router.post("/", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.create(request.body);
+    response.status(200).json(jobPosting);
+  } catch (error) {
+    response.status(500).json({ message: error.message });
+  }
 });
 
 // Update specific job posting by id
