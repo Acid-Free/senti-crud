@@ -44,25 +44,28 @@ app.get("/", async (request, response) => {
 
 // Called by forms when editing a particular job posting by id
 // Render another page for editing job posting info
-app.get("/edit-job-postings/:id", async (request, response) => {
+app.get("/edit-job-posting/:id", async (request, response) => {
   try {
-    let jobPostings = await fetch(
+    let jobPosting = await fetch(
       `${api}/api/job-postings/${request.params.id}`
     );
-    jobPostings = await jobPostings.json();
+    jobPosting = await jobPosting.json();
 
-    return response.render("update-job-postings", { jobPostings });
+    return response.render("update-job-posting", { jobPosting });
   } catch (error) {
     return response.status(500).send("500: Internal server error");
   }
 });
 
-app.post("/edit-job-postings/:id", async (request, response) => {
-  // TODO:
+app.post("/edit-job-posting/:id", async (request, response) => {
+  // const queryResult = await fetch(`${api}/api/job-postings/${request.params.id}`, {
+  //   method:"put",
+  //   body: JSON.stringify({})
+  // })
 });
 
 // Called by forms when deleting a paricular job posting by id
-app.post("/delete-job-postings/:id", (request, response) => {
+app.post("/delete-job-posting/:id", (request, response) => {
   // TODO:
 });
 
