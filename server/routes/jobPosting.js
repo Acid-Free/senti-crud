@@ -1,14 +1,21 @@
 import express from "express";
-import mongoose from "mongoose";
 
 import JobPosting from "../models/jobPosting.js";
 
 const router = express.Router();
 
+function sendError(error, response) {
+  return response.status(500).json({ message: error.message });
+}
+
 // Get all job postings
-router.get("/", (request, response) => {
-  // TODO:
-  response.send("this is job posting index");
+router.get("/", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.find({});
+    response.status(200).json(jobPosting);
+  } catch (error) {
+    sendError(error, response);
+  }
 });
 
 // Get specific job posting by id
