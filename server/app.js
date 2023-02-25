@@ -1,9 +1,13 @@
-import express, { application } from "express";
+import express from "express";
 import * as dotenv from "dotenv";
+import mongoose from "mongoose";
 import apiRouter from "./routes/api.js";
 
 // use .env by default
 dotenv.config();
+
+// disable strictQuery to suppress warning
+mongoose.set("strictQuery", false);
 
 const port = process.env.PORT || 5500;
 
@@ -33,4 +37,10 @@ app.get("/", async (request, response) => {
   response.render("index", message);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+mongoose
+  .connect(process.env.DB_URL)
+  .then(() => {
+    console.log("Connected to mongodb");
+    app.listen(port, () => console.log(`Listening on port ${port}`));
+  })
+  .catch((error) => console.log("mongodb:", error));
