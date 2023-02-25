@@ -6,7 +6,7 @@
   <title>Update Job Posting</title>
 </head>
 <body>
-  <form action="/edit-job-posting/<% jobPosting._id %>" method="post">
+  <form action="/edit-job-posting/<%= jobPosting._id %>" method="post">
     <label for="title">Title:</label>
     <input type="text" id="title" name="title" value="<%= jobPosting.title %>">
     <br>
