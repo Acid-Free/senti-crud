@@ -9,6 +9,8 @@ const port = process.env.PORT || 5500;
 
 const app = express();
 
+const api = process.env.API_URL;
+
 // Use ejs as templating engine
 app.set("view engine", "ejs");
 app.set("views", "./client/views/");
@@ -25,7 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api", apiRouter);
 
 app.get("/", async (request, response) => {
-  const query = await fetch(`${process.env.API_URL}/api/hello`);
+  const query = await fetch(`${api}/api/hello`);
   const message = await query.json();
 
   response.render("index", message);

@@ -1,10 +1,11 @@
-import express from "express";
+import express, { application } from "express";
+import jobPostingRoute from "./jobPosting.js";
 
 const router = express.Router();
 
-router.get("/hello", (request, response) => {
-  console.log("this is get hello");
+router.use("/job-postings", jobPostingRoute);
 
+router.get("/hello", (request, response) => {
   const data = {
     message: "Hello from the server!",
   };

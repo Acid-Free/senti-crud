@@ -8,10 +8,16 @@ const router = express.Router();
 // Get all job postings
 router.get("/", (request, response) => {
   // TODO:
+  response.send("this is job posting index");
 });
 
 // Get specific job posting by id
 router.get("/:id", (request, response) => {
+  // TODO:
+});
+
+// Add new job posting
+router.post("/", (request, response) => {
   // TODO:
 });
 
@@ -29,3 +35,5 @@ router.delete("/:id", (request, response) => {
 router.get("/count", (request, response) => {
   // TODO:
 });
+
+export default router;
