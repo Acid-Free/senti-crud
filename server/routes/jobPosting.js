@@ -90,8 +90,14 @@ router.delete("/:id", async (request, response) => {
 });
 
 // Get job posting count
-router.get("/count", (request, response) => {
-  // TODO:
+router.get("/get/count", async (request, response) => {
+  try {
+    const jobPosting = await JobPosting.countDocuments();
+
+    return sendSuccess(jobPosting, response);
+  } catch (error) {
+    return sendError(error, response);
+  }
 });
 
 export default router;
