@@ -31,7 +31,7 @@ router.get("/:id", async (request, response) => {
 
     // send error if empty result
     if (!jobPosting) {
-      sendError(nonexistentError, response);
+      return sendError(nonexistentError, response);
     }
 
     sendSuccess(jobPosting, response);
