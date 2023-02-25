@@ -1,4 +1,4 @@
-import express, { query } from "express";
+import express from "express";
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import apiRouter from "./routes/api.js";
@@ -80,6 +80,22 @@ app.post("/delete-job-posting/:id", async (request, response) => {
       method: "delete",
     });
   } catch (error) {
+    return response.status(500).send("500: Internal server error");
+  }
+
+  return response.redirect("/");
+});
+
+// Call API to create job posting
+app.post("/create-job-posting", async (request, response) => {
+  try {
+    await fetch(`${api}/api/job-postings`, {
+      method: "post",
+      body: JSON.stringify({ ...request.body }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    // TODO: add flash message
     return response.status(500).send(error);
   }
 
