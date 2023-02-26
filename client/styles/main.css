@@ -87,21 +87,19 @@ textarea {
 
 .job-postings-list {
   flex: 2;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
 }
 
 .job-postings-list > .job-posting-element {
   list-style: none;
   border: 3px solid;
   padding: 15px;
-  margin-bottom: 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
-
-.job-postings-list > .job-posting-element:last-child {
-  margin-bottom: 0px;
 }
 
 .job-posting-element > .job-posting-buttons {
