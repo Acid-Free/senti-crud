@@ -4,13 +4,28 @@ const JobPosting = mongoose.model(
   "Job Posting",
   new mongoose.Schema(
     {
-      title: String,
-      description: String,
-      location: String,
-      salary: Number,
+      title: {
+        type: String,
+        required: [true, "You need to provide the job title."],
+      },
+      description: {
+        type: String,
+        required: [true, "You need to provide the job description."],
+      },
+      location: {
+        type: String,
+        required: [true, "You need to provide the job location."],
+      },
+      salary: {
+        type: String,
+        required: [true, "You need to provide a salary description."],
+      },
       company: {
-        name: String,
-        website: String,
+        name: {
+          type: String,
+          required: [true, "You need to provide the company name"],
+        },
+        website: { type: String, required: false },
       },
     },
     {
