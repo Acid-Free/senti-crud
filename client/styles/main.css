@@ -20,6 +20,11 @@ h3 {
   padding: 0px;
 }
 
+a {
+  color: var(--main-color);
+  text-decoration-line: none;
+}
+
 textarea {
   resize: none;
   height: 200px;
@@ -53,7 +58,7 @@ textarea {
 
 .header {
   display: flex;
-  padding: 30px 10px 10px 10px;
+  padding: 20px 15px 10px 15px;
   justify-content: space-between;
   align-items: flex-end;
 }
@@ -88,16 +93,45 @@ textarea {
   flex: 2;
 }
 
-.job-postings-list > li {
+.job-postings-list > .job-posting-element {
   list-style: none;
   border: 3px solid;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 10px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
-.job-postings-list > li:last-child {
+.job-postings-list > .job-posting-element:last-child {
   margin-bottom: 0px;
+}
+
+.job-posting-element > .job-posting-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.job-posting-buttons button {
+  padding: 6px;
+  font-size: small;
+}
+
+.delete-button {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+}
+
+.job-posting-element .delete-button:active {
+  background-color: var(--main-color);
+  color: var(--main-bg-color);
+}
+
+.delete-button:hover {
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
 }
 
 .create-job-posting {
@@ -105,7 +139,7 @@ textarea {
 }
 
 .create-job-posting > .form-content {
-  padding: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;

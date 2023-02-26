@@ -17,20 +17,25 @@
   <div class="content">
     <ul class="job-postings-list">
       <%jobPostings.forEach(jobPosting => { %>
-        <li>
+        <li class="job-posting-element">
           <h3><%= jobPosting.title %></h3>
+          <%if (jobPosting.company.website) {%>
+            <a href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
+          <% } else {%>
+            <p><%= jobPosting.company.name %></p>
+          <% }%>
           <p><%= jobPosting.description %></p>
           <p><%= jobPosting.location %></p>
           <p><%= jobPosting.salary %></p>
-          <p>Company: <%= jobPosting.company.name %></p>
-          <p>Website: <%= jobPosting.company.website %></p>
-          <form action="/edit-job-posting/<%= jobPosting._id %>" method="get">
-            <button type="submit">Edit</button>
-          </form>
-          <form action="/delete-job-posting/<%= jobPosting._id %>" method="post">
-            <input type="hidden" name="_method" value="DELETE">
-            <button>Delete</button>
-          </form>
+          <div class="job-posting-buttons">
+            <form action="/edit-job-posting/<%= jobPosting._id %>" method="get">
+              <button type="submit">Edit</button>
+            </form>
+            <form action="/delete-job-posting/<%= jobPosting._id %>" method="post">
+              <input type="hidden" name="_method" value="DELETE">
+              <button class="delete-button">Delete</button>
+            </form>
+          </div>
         </li>
       <% }); %>
     </ul>
