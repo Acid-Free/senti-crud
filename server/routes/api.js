@@ -1,4 +1,4 @@
-import express, { application } from "express";
+import express from "express";
 import jobPostingRoute from "./jobPosting.js";
 
 const router = express.Router();
