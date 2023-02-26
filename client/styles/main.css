@@ -117,6 +117,7 @@ textarea {
 .job-posting-buttons button {
   padding: 6px;
   font-size: small;
+  font-weight: 800;
 }
 
 .delete-button {
@@ -138,6 +139,7 @@ textarea {
   flex: 1;
 }
 
+.update-content > .form-content,
 .create-job-posting > .form-content {
   padding: 15px;
   display: flex;
@@ -177,4 +179,18 @@ textarea {
   padding: 20px;
   font-size: x-large;
   font-weight: 800;
+}
+
+.update-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.update-content > .form-content {
+  width: 800px;
+}
+
+.form-content textarea {
+  height: 300px;
 }
