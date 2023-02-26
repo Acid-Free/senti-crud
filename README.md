@@ -24,3 +24,17 @@ DB_URL=<your MongoDB connection URI>
 6. Run application with `npm run start`
 7. Access `http://localhost:5500`
 
+## Screenshots
+<p>
+<img src="screenshots/homepage.png" alt="index route screenshot" width="800px">
+
+<em>Homepage, showing all job postings and form for creating one</em>
+</p>
+
+<br />
+
+<p>
+<img src="screenshots/edit-job-posting.png" alt="update job posting route screenshot" width="800px">
+
+<em>Update job posting page, shows current values to be edited</em>
+</p>
