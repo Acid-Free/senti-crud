@@ -24,9 +24,9 @@
           <h3><%= jobPosting.title %></h3>
 
           <%if (jobPosting.company.website) {%>
-            <a href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
+            <a class="job-posting-company-name linked" href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
           <% } else {%>
-            <p><%= jobPosting.company.name %></p>
+            <p class="job-posting-company-name"><%= jobPosting.company.name %></p>
           <% }%>
 
           <div class="description-div"></div>
