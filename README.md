@@ -26,7 +26,7 @@ DB_URL=<your MongoDB connection URI>
 
 ## Screenshots
 <p>
-<img src="screenshots/homepage.png" alt="index route screenshot" width="800px">
+<img src="screenshots/homepage-v2.png" alt="index route screenshot" width="800px">
 
 <em>Homepage, showing all job postings and form for creating one</em>
 </p>
@@ -34,7 +34,7 @@ DB_URL=<your MongoDB connection URI>
 <br />
 
 <p>
-<img src="screenshots/edit-job-posting.png" alt="update job posting route screenshot" width="800px">
+<img src="screenshots/edit-job-posting-v2.png" alt="update job posting route screenshot" width="800px">
 
 <em>Update job posting page, shows current values to be edited</em>
 </p>
