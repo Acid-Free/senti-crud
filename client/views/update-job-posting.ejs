@@ -20,7 +20,7 @@
   <div class="update-content">
     <div class="form-content">
       <h2>Update Job Posting</h2>
-      <form id="update-form"action="/edit-job-posting/<%= jobPosting._id %>" method="post">
+      <form id="update-form" action="/edit-job-posting/<%= jobPosting._id %>" method="post">
         <p>
           <label for="title">Title</label>
           <input type="text" id="title" name="title" required value="<%= jobPosting.title %>">
@@ -28,7 +28,6 @@
         <br>
         <p>
           <label for="description">Description</label>
-          <!-- <textarea id="description" name="description" required><%= jobPosting.description %></textarea> -->
           <div id="editor-container">
             <input type="hidden" id="description" name="description" value="<%= jobPosting.description %>" required>
             <div id="editor"></div>
@@ -80,7 +79,6 @@
     } catch(error) {
       console.error(error);
     }
-
     
     form.addEventListener('submit', function() {
       const descriptionContent = quill.getContents();
