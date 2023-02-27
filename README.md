@@ -2,6 +2,12 @@
 
 A job posting CRUD API to be showcased at Senti AI for Cloud Engineer position.
 
+## Live server links
+
+http://ec2-35-77-197-119.ap-northeast-1.compute.amazonaws.com:5500/
+
+http://35.77.197.119:5500/
+
 ## Technologies
 
 - Node (version 18.xx.x) and Express (JS)
@@ -13,7 +19,7 @@ A job posting CRUD API to be showcased at Senti AI for Cloud Engineer position.
 1. Install `npm`
 2. Install dependencies with `npm install`
 3. Get your MongoDB connection string URI. More info at https://www.mongodb.com/docs/guides/atlas/connection-string/.
-4. If Step 3 is too much work, use `"mongodb+srv://foo:bar@crud-learn-mongodb.ltursjo.mongodb.net/senti-crud?retryWrites=true&w=majority"`
+4. If Step 3 is not possible, use `"mongodb+srv://foo:bar@crud-learn-mongodb.ltursjo.mongodb.net/senti-crud?retryWrites=true&w=majority"`
 5. Create an .env file in project root directory and add the following: 
 
 ```
