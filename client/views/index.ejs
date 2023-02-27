@@ -21,14 +21,20 @@
       <%jobPostings.forEach(jobPosting => { %>
         <li class="job-posting-element">
           <h3><%= jobPosting.title %></h3>
+
           <%if (jobPosting.company.website) {%>
             <a href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
           <% } else {%>
             <p><%= jobPosting.company.name %></p>
           <% }%>
-          <p><%= jobPosting.description %></p>
+
+          <div class="description-div"></div>
+          <input type="hidden" class="description-data" name="description" value="<%= jobPosting.description %>" required>
+
           <p><%= jobPosting.location %></p>
+
           <p><%= jobPosting.salary %></p>
+          
           <div class="job-posting-buttons">
             <form action="/edit-job-posting/<%= jobPosting._id %>" method="get">
               <button type="submit">Edit</button>
@@ -82,6 +88,6 @@
     </div>
   </div>
     
-    <script src="/scripts/main.js"></script>
-  </body>
-  </html>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>
