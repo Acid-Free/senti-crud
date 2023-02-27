@@ -1,6 +1,7 @@
 import express from "express";
 import * as dotenv from "dotenv";
 import mongoose from "mongoose";
+import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import apiRouter from "./routes/api.js";
 
 // use .env by default
@@ -35,6 +36,24 @@ app.get("/", async (request, response) => {
   try {
     let jobPostings = await fetch(`${api}/api/job-postings`);
     jobPostings = await jobPostings.json();
+
+    // Convert every job posting description to dom elements
+    /* eslint-disable no-param-reassign */
+    jobPostings.forEach((jobPosting) => {
+      try {
+        const parsedDescription = JSON.parse(jobPosting.description);
+        const converter = new QuillDeltaToHtmlConverter(
+          parsedDescription.ops,
+          {}
+        );
+
+        jobPosting.description = converter.convert();
+      } catch (error) {
+        console.error(error);
+        // If error, jobPostings.description cannot be parsed to html
+        // Since the model accepts String, add this as a stopgap
+      }
+    });
 
     return response.status(200).render("index", { jobPostings });
   } catch (error) {

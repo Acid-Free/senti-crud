@@ -88,6 +88,7 @@ textarea {
 .job-postings-list {
   flex: 2;
   display: flex;
+  justify-content: flex-end;
   flex-direction: column-reverse;
   gap: 10px;
 }
@@ -99,7 +100,16 @@ textarea {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 15px;
+}
+
+.job-posting-element > .job-posting-company-name {
+  font-size: medium;
+}
+
+.job-posting-company-name.linked {
+  font-style: italic;
+  font-weight: 800;
 }
 
 .job-posting-element > .job-posting-buttons {
@@ -165,8 +175,23 @@ textarea {
   font-size: medium;
 }
 
-.form-content > form > p > textarea {
+.form-content > form > p > textarea,
+.form-content > form > p > #editor-container {
   font-size: large;
+}
+
+#editor-container {
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+#editor-container > div {
+  border: none;
+}
+
+#editor-container > .ql-toolbar {
+  border: none;
+  background-color: var(--main-color);
 }
 
 .form-content > form > button {
@@ -187,4 +212,20 @@ textarea {
 
 .form-content textarea {
   height: 300px;
+}
+
+.description-div {
+  margin: 0px 20px;
+}
+
+.description-div > ul {
+  margin-left: 30px;
+}
+
+.description-div > p {
+  margin: 10px 0px;
+}
+
+.description-div > p:last-child {
+  margin: 0px;
 }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
   <link rel="stylesheet" href="/styles/main.css">
   <title>Job Postings</title>
 </head>
@@ -21,14 +22,20 @@
       <%jobPostings.forEach(jobPosting => { %>
         <li class="job-posting-element">
           <h3><%= jobPosting.title %></h3>
+
           <%if (jobPosting.company.website) {%>
-            <a href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
+            <a class="job-posting-company-name linked" href="<%= jobPosting.company.website %>"><%= jobPosting.company.name %></a>
           <% } else {%>
-            <p><%= jobPosting.company.name %></p>
+            <p class="job-posting-company-name"><%= jobPosting.company.name %></p>
           <% }%>
-          <p><%= jobPosting.description %></p>
+
+          <div class="description-div"></div>
+          <input type="hidden" class="description-data" name="description" value="<%= jobPosting.description %>" required>
+
           <p><%= jobPosting.location %></p>
+
           <p><%= jobPosting.salary %></p>
+
           <div class="job-posting-buttons">
             <form action="/edit-job-posting/<%= jobPosting._id %>" method="get">
               <button type="submit">Edit</button>
@@ -45,7 +52,7 @@
     <div class="create-job-posting">
       <div class="form-content">
         <h2>Create Job Posting</h2>
-        <form action="/create-job-posting" method="post">
+        <form id="update-form" action="/create-job-posting" method="post">
           <p>
             <label for="title">Title</label>
             <input type="text" id="title" name="title" required>
@@ -53,7 +60,10 @@
           <br>
           <p>
             <label for="description">Description</label>
-            <textarea id="description" name="description" required></textarea>
+            <div id="editor-container">
+              <input type="hidden" id="description" name="description" required>
+              <div id="editor"></div>
+            </div>
           </p>
           <br>
           <p>
@@ -81,7 +91,26 @@
       </div>
     </div>
   </div>
+  
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script>
+    const form = document.querySelector('#update-form');
+    const editor = document.querySelector('#editor');
+    const descriptionInput = document.querySelector('#description');
+
+    const quill = new Quill(editor, {
+      theme: 'snow'
+    });
     
-    <script src="/scripts/main.js"></script>
-  </body>
-  </html>
+    // Delta is the object format quill supports
+    // TODO: prevent XSS
+    
+    form.addEventListener('submit', function() {
+      const descriptionContent = quill.getContents();
+      // Converts the delta to string for storage
+      descriptionInput.value = JSON.stringify(descriptionContent);
+    });
+  </script>
+  <script type="module" src="/scripts/main.js"></script>
+</body>
+</html>
