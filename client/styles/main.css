@@ -82,6 +82,7 @@ textarea {
 .content {
   margin: 0px 60px 20px;
   display: flex;
+  flex-wrap: wrap-reverse;
   gap: 20px;
 }
 
@@ -101,6 +102,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  min-width: 450px;
 }
 
 .job-posting-element > .job-posting-company-name {
@@ -151,6 +153,7 @@ textarea {
   gap: 10px;
   border: 3px solid;
   border-radius: 10px;
+  min-width: 350px;
 }
 
 .form-content > form {
