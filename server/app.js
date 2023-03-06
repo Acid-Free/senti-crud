@@ -1,11 +1,11 @@
 import express from "express";
-import * as dotenv from "dotenv";
+import * as dotenvFlow from "dotenv-flow";
 import mongoose from "mongoose";
 import { QuillDeltaToHtmlConverter } from "quill-delta-to-html";
 import apiRouter from "./routes/api.js";
 
-// use .env by default
-dotenv.config();
+// use .env.* files
+dotenvFlow.config();
 
 // disable strictQuery to suppress warning
 mongoose.set("strictQuery", false);
