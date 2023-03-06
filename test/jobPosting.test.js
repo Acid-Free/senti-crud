@@ -7,9 +7,10 @@ process.env.NODE_ENV = "test";
 
 chai.use(chaiHttp);
 
-// empties the selected DB after executing all tests
+// Empties the selected DB after executing all tests
 after((done) => {
-  JobPosting.deleteMany({}, (error) => {});
+  // Add error handling on callback function
+  JobPosting.deleteMany({}, () => {});
   done();
 });
 
