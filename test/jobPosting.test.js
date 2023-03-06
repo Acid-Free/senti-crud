@@ -13,7 +13,7 @@ after((done) => {
   done();
 });
 
-describe("/Data fetching and insertion", () => {
+describe("/Data fetching, insertion, and deletion", () => {
   it("should have 0 job posting in the beginning", (done) => {
     chai
       .request(server)
@@ -68,6 +68,15 @@ describe("/Data fetching and insertion", () => {
         done();
       });
   });
-});
 
-describe("/Data deletion", () => {});
+  it("should delete a job posting", (done) => {
+    chai
+      .request(server)
+      .delete(`/api/job-postings/${newObjectId}`)
+      .end((error, response) => {
+        assert.equal(response.status, 204);
+
+        done();
+      });
+  });
+});
