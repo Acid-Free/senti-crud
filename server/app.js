@@ -128,3 +128,5 @@ mongoose
     app.listen(port, () => console.log(`Listening on port ${port}`));
   })
   .catch((error) => console.log("mongodb:", error));
+
+export default app;
