@@ -4,7 +4,9 @@
   "description": "A job posting CRUD API to be showcased at Senti AI for Cloud Engineer position.",
   "main": "index.js",
   "scripts": {
-    "start": "node server/app.js"
+    "start": "cross-env NODE_ENV=production node server/app.js",
+    "start-dev": "cross-env NODE_ENV=development node server/app.js",
+    "test": "cross-env NODE_ENV=test mocha --exit"
   },
   "keywords": [],
   "author": "Sian Caleb Domasig",
