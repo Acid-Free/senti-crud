@@ -13,8 +13,9 @@ function sendError(error, response) {
   response.status(status).json({ message: error.message });
 }
 
-function sendSuccess(resultObject, response) {
-  response.status(200).json(resultObject);
+function sendSuccess(resultObject, response, statusCode) {
+  const status = statusCode ?? 200;
+  response.status(status).json(resultObject);
 }
 
 // Get all job postings
@@ -47,7 +48,7 @@ router.get("/:id", async (request, response) => {
 router.post("/", async (request, response) => {
   try {
     const jobPosting = await JobPosting.create(request.body);
-    return sendSuccess(jobPosting, response);
+    return sendSuccess(jobPosting, response, 201);
   } catch (error) {
     return sendError(error, response);
   }
@@ -83,7 +84,7 @@ router.delete("/:id", async (request, response) => {
       return sendError(nonexistentError, response);
     }
 
-    return sendSuccess({ message: "Object deleted" }, response);
+    return sendSuccess({ message: "Object deleted" }, response, 204);
   } catch (error) {
     return sendError(error, response);
   }
